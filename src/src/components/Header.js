@@ -96,7 +96,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
   return (
     <HeaderContainer>
       <Logo>
-        <h2> ZeusDAO</h2>
+        <h2>JorrParivar Perks</h2>
       </Logo>
       <HeaderFields>
         <Item exact to="/" activeClassName="selected">
@@ -106,11 +106,7 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
           <h4>Podcast</h4>
         </Item> */}
         <Item exact to="/Holders" activeClassName="selected">
-          <h4> Livepeer</h4>
-        </Item>
-
-        <Item exact to="/s" activeClassName="selected">
-          <h4> Recorded</h4>
+          <h4> Skelott </h4>
         </Item>
 
         {level.bronze ? (

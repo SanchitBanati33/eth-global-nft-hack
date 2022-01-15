@@ -13,7 +13,9 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./style.css";
-
+import Image1 from "../../images/meme.png";
+import Image2 from "../../images/gogo.jpeg";
+import Image3 from "../../images/A.jpg";
 
 const Post = ({ content, video, segment, index }) => {
   return (
