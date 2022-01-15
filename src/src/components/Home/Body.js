@@ -49,11 +49,11 @@ const Body = ({ account, haveTokens }) => {
     color: rgb(255, 255, 255);
   `;
 
-  const noAccountUrl = "";
+  const noAccountUrl = "https://player.vimeo.com/video/653647466?h=a5c51b7b7d";
   const connectedNoTokens =
-    "";
+    "https://player.vimeo.com/video/653796332?h=58dc844c05";
   const connectedHaveTokens =
-    "";
+    "https://player.vimeo.com/video/653647633?h=c62cbb52a3";
 
   return (
 
@@ -67,13 +67,13 @@ const Body = ({ account, haveTokens }) => {
               haveTokens ? (
                 <span>Hurray! You are in :)</span>
               ) : (
-                <span>Wallet connected but No NFT Found :(</span>
+                <span>Wallet connected but No JorrParivar Found :(</span>
               )
             ) : (
-              <span> Connect your wallet</span>
+              <span>Watch video & Connect your wallet</span>
             )}
           </Para>
-          {/* <Container>
+          <Container>
             <iframe
               className="video"
               src={
@@ -87,7 +87,7 @@ const Body = ({ account, haveTokens }) => {
               allow="autoplay; fullscreen; picture-in-picture"
               allowfullscreen
             ></iframe>
-          </Container> */}
+          </Container>
           {account ? (
             !haveTokens ? (
               <LinkToOpensea

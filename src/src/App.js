@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Livepeer from "../src/pages/Livepeer";
+import Holders from "../src/pages/Holders";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
@@ -10,8 +10,11 @@ import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
+// const JorrToken = require("../ethereum/JorrToken");
+import JorrToken from "./ethereum/JorrToken";
 import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
+import Podcast from "./pages/Podcast";
 import ErrorPage from "./components/ErrorPage";
 const axios = require("axios");
 
@@ -185,7 +188,7 @@ const App = () => {
           path="/"
           component={() => <Home account={account} haveTokens={haveTokens} />}
         />
-        
+        <Route exact path="/thirdweb-podcast" component={() => <Podcast />} />
         <ProtectedRoute
           level={gold}
           exact
@@ -225,8 +228,8 @@ const App = () => {
         <Route
           
           exact
-          path="/Livepeer"
-          component={() => <Livepeer  />}
+          path="/Holders"
+          component={() => <Holders  />}
         />        
         <Route
           path="*"

@@ -9,9 +9,12 @@ import {
   Description,
   TextWrapper,
 } from "./elements";
+import { Button } from "react-bootstrap";
 
 import "./style.css";
-
+import Image1 from "../../images/meme.png";
+import Image2 from "../../images/gogo.jpeg";
+import Image3 from "../../images/A.jpg";
 
 var Video = "https://player.vimeo.com/video/578227462?h=a04379fb42";
 
