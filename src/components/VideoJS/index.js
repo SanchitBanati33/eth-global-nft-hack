@@ -2,10 +2,7 @@ import React from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import "./elements.js";
-import {VideoContainer} from "./elements";
-
-
-
+import { VideoContainer } from "./elements";
 
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
@@ -44,18 +41,16 @@ export const VideoJS = (props) => {
 
   return (
     <>
-    <VideoContainer>
-
-     
-          <div data-vjs-player>
-           <video  ref={videoRef} className="video-js vjs-big-play-centered"  />
-          </div>
-
-        
-
-        </VideoContainer>
+      <VideoContainer>
+        <div data-vjs-player>
+          <video
+            ref={videoRef}
+            className="video-js vjs-big-play-centered"
+            height="200px"
+          />
+        </div>
+      </VideoContainer>
     </>
- 
   );
 };
 

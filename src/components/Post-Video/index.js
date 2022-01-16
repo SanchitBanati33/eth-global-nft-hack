@@ -9,6 +9,7 @@ import {
   Description,
   TextWrapper,
 } from "./elements";
+import { Button } from "react-bootstrap";
 
 import "./style.css";
 

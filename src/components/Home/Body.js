@@ -50,30 +50,27 @@ const Body = ({ account, haveTokens }) => {
   `;
 
   const noAccountUrl = "";
-  const connectedNoTokens =
-    "";
-  const connectedHaveTokens =
-    "";
+  const connectedNoTokens = "";
+  const connectedHaveTokens = "";
 
   return (
-
     <>
-    <BodyContainer>
-      {/* <Image src={homePage} /> */}
-      <BodyContent>
-        <Content>
-          <Para>
-            {account ? (
-              haveTokens ? (
-                <span>Hurray! You are in :)</span>
+      <BodyContainer>
+        {/* <Image src={homePage} /> */}
+        <BodyContent>
+          <Content>
+            <Para>
+              {account ? (
+                haveTokens ? (
+                  <span>Hurray! You are in :)</span>
+                ) : (
+                  <span>Wallet connected but No NFT Found :(</span>
+                )
               ) : (
-                <span>Wallet connected but No NFT Found :(</span>
-              )
-            ) : (
-              <span> Connect your wallet</span>
-            )}
-          </Para>
-          {/* <Container>
+                <span> Connect your wallet</span>
+              )}
+            </Para>
+            {/* <Container>
             <iframe
               className="video"
               src={
@@ -88,24 +85,21 @@ const Body = ({ account, haveTokens }) => {
               allowfullscreen
             ></iframe>
           </Container> */}
-          {account ? (
-            !haveTokens ? (
-              <LinkToOpensea
-                href="https://opensea.io/collection/jorrparivar"
-                target="_blank"
-              >
-                Buy On Opensea
-              </LinkToOpensea>
-            ) : null
-          ) : null}
-        </Content>
-      </BodyContent>
-      {/* <Videopage /> */}
-    </BodyContainer>
-  
+            {account ? (
+              !haveTokens ? (
+                <LinkToOpensea
+                  href="https://testnets.opensea.io/collection/zeusnft-v2"
+                  target="_blank"
+                >
+                  Buy On Opensea
+                </LinkToOpensea>
+              ) : null
+            ) : null}
+          </Content>
+        </BodyContent>
+        {/* <Videopage /> */}
+      </BodyContainer>
     </>
-
-  
   );
 };
 

@@ -105,13 +105,17 @@ const Header = ({ account, onConnectWallet, onDisconnect, level }) => {
         {/* <Item exact to="/thirdweb-podcast" activeClassName="selected">
           <h4>Podcast</h4>
         </Item> */}
-        <Item exact to="/Holders" activeClassName="selected">
-          <h4> Livepeer</h4>
-        </Item>
+        {level.gold || level.silver || level.bronze ? (
+          <Item exact to="/Livepeer" activeClassName="selected">
+            <h4> Livepeer</h4>
+          </Item>
+        ) : null}
 
-        <Item exact to="/s" activeClassName="selected">
-          <h4> Recorded</h4>
-        </Item>
+        {level.gold || level.silver || level.bronze ? (
+          <Item exact to="/pastSessions" activeClassName="selected">
+            <h4> Recorded</h4>
+          </Item>
+        ) : null}
 
         {level.bronze ? (
           <Item to="/Bronze" activeClassName="selected">

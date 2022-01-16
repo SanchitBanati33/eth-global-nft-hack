@@ -10,12 +10,12 @@ const Container = styled.div`
   margin: 50px;
 `;
 
-const ContentPage = ({ segment }) => {
+const ContentPage = ({ segment, account }) => {
   const [contents, setcontents] = useState(null);
   const { id } = useParams();
 
   const fetchContents = async () => {
-    const url = `https://test-admin.kraznikunderverse.com/api/${segment}`;
+    const url = `https://buildit-tier.kraznikunderverse.com/api/${segment}`;
     const options = {
       validate: "alpha romeo tango",
     };
@@ -34,7 +34,11 @@ const ContentPage = ({ segment }) => {
     <Container>
       {contents ? (
         contents[id.toString()] ? (
-          <Videopage content={contents[id.toString()]} segment={segment} />
+          <Videopage
+            content={contents[id.toString()]}
+            segment={segment}
+            account={account}
+          />
         ) : // <ErrorPage text={"404 NOT FOUND"} />
         null
       ) : // <ErrorPage text={"404 NOT FOUND"} />
