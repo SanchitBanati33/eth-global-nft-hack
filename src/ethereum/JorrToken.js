@@ -1,9 +1,5 @@
 import web3 from "./web3";
 import abi from "./build/JorrTokenAbi.json";
-// import abi from "./build/JorrTokenTestAbi.json";
-
-// const web3 = require("./web3");
-// const abi = require("./build/JorrTokenAbi.json");
 
 const JorrToken = new web3.eth.Contract(
   abi,

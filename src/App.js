@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Livepeer from "../src/pages/Livepeer";
+import Recorded from "./pages/Recorded";
 
 import ProtectedRoute from "./utils/ProtectedRoute";
 
@@ -10,9 +11,12 @@ import Web3Modal from "web3modal";
 import web3 from "./ethereum/web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
+import ZeusNFT from "./ethereum/ZeusNFT";
 import Segment from "./pages/Segment";
 import ContentPage from "./pages/ContentPage";
+import Podcast from "./pages/Podcast";
 import ErrorPage from "./components/ErrorPage";
+import RecordedVideo from "./components/RecordedSessions/RecordedVideo";
 const axios = require("axios");
 
 const infuraId =
@@ -43,6 +47,56 @@ const App = () => {
   const [bronze, setBronze] = useState(false);
 
   const [haveTokens, setHaveTokens] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const [stream, setStream] = useState({ isActive: false });
+
+  const fetchSessions = async () => {
+    try {
+      const url = `https://livepeer.com/api/stream/${process.env.REACT_APP_STREAM_ID}/sessions`;
+      const options = {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+      const { data } = await axios.get(url, options);
+      console.log(data);
+      setSessions(data);
+    } catch (err) {
+      if (err) console.log(err);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchSessions();
+  }, []);
+
+  const fetchPlaybackId = async () => {
+    console.log("stream id: ", process.env.REACT_APP_STREAM_ID);
+    console.log("api key: ", process.env.REACT_APP_API_KEY);
+    try {
+      const url = `https://livepeer.com/api/stream/${process.env.REACT_APP_STREAM_ID}`;
+      const options = {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+      const { data } = await axios.get(url, options);
+      console.log(data);
+      // setIsStreamActive(data.isActive);
+      // setPlaybackId(data.playbackId);
+      setStream(data);
+    } catch (err) {
+      if (err) console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaybackId();
+  }, []);
 
   const onConnectWallet = async () => {
     console.log("connecting wallet...");
@@ -99,23 +153,24 @@ const App = () => {
       const userAddress = account;
       // "0x6ff9c8ed337de934e46e773f61a1a3369617c3ce";
       //   "0x5908bfd84673974ddb8b6688501a53ac5fc92b6b";
-      const balance = await JorrToken.methods
+      const balance = await ZeusNFT.methods
         .balanceOf(userAddress.toString())
         .call();
 
       // if(balance === 0)
-      console.log("Jor token balance: ", balance);
+      console.log("token balance: ", balance);
       if (balance > 0) {
         setHaveTokens(true);
       }
 
       for (let i = 0; i < balance; i++) {
-        const tokenId = await JorrToken.methods
+        const tokenId = await ZeusNFT.methods
           .tokenOfOwnerByIndex(userAddress, i)
           .call();
 
-        const url = `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
-        // `https://rinkeby-api.opensea.io/api/v1/asset/0x002aF40A6eB3C688612184C51500b97C1b89dfFC/${tokenId}/`;
+        const url =
+          // `https://api.opensea.io/api/v1/asset/0x2E9983b023934e72e1E115Ab6AEbB3636f1C4Cbe/${tokenId}/`;
+          `https://rinkeby-api.opensea.io/api/v1/asset/0x5d3a3430aEBa963DA7a83a330337B9efe777A1e0/${tokenId}/`;
         const { data } = await axios.get(url);
 
         await data.traits.map((trait) => {
@@ -185,7 +240,7 @@ const App = () => {
           path="/"
           component={() => <Home account={account} haveTokens={haveTokens} />}
         />
-        
+        {/* <Route exact path="/thirdweb-podcast" component={() => <Podcast />} /> */}
         <ProtectedRoute
           level={gold}
           exact
@@ -196,7 +251,7 @@ const App = () => {
           level={gold}
           exact
           path="/Gold/:id"
-          component={() => <ContentPage segment="Gold" />}
+          component={() => <ContentPage segment="Gold" account={account} />}
         />
         <ProtectedRoute
           level={silver}
@@ -208,7 +263,7 @@ const App = () => {
           level={silver}
           exact
           path="/Silver/:id"
-          component={() => <ContentPage segment="Silver" />}
+          component={() => <ContentPage segment="Silver" account={account} />}
         />
         <ProtectedRoute
           level={bronze}
@@ -220,14 +275,26 @@ const App = () => {
           level={bronze}
           exact
           path="/Bronze/:id"
-          component={() => <ContentPage segment="Bronze" />}
+          component={() => <ContentPage segment="Bronze" account={account} />}
         />
-        <Route
-          
+        <ProtectedRoute
+          level={gold || silver || bronze}
           exact
           path="/Livepeer"
-          component={() => <Livepeer  />}
-        />        
+          component={() => <Livepeer sessions={sessions} stream={stream} />}
+        />
+        <ProtectedRoute
+          level={gold || silver || bronze}
+          exact
+          path="/pastSessions"
+          component={() => <Recorded sessions={sessions} />}
+        />
+        <ProtectedRoute
+          level={gold || silver || bronze}
+          exact
+          path="/pastSessions/:id"
+          component={() => <RecordedVideo sessions={sessions} />}
+        />
         <Route
           path="*"
           component={() => <ErrorPage text={"404 NOT FOUND"} />}
