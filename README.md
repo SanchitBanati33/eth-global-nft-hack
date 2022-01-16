@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The Problem Statement
 
-## Available Scripts
+We all have to agree Discord is one of the most centralized entities we have in the space and if we truly want decentralization and true ownership to happen in the Web3 space we need an open protocol for community management. ZeusDAO was inspired by this problem statement and we have built a community platform for an NFT community in which a Steward/Admin of the project can just plugin into their main website and all the community management can happen there without the involvement of discord at all.
 
-In the project directory, you can run:
+Let us go through a journey.
 
-### `npm start`
+ZeusDAO has an NFT community that owns Zeus NFT.
+All the Zeus NFT have either one of 3 traits (Gold, Silver, Bronze) think of them as discord access levels.
+NFT Holders comes on the Zeus NFT main website, the ones who don't own the ZeusNFT can access the Home page only, but for the ones who own ZeusNFT -> As soon as they connect they can access more tabs within the website (just like discord channels) depending on the access trait the NFT has.
+Now the Zeus NFT holders can access tabs like Gold, Silver, Bronze on the main website only where for now the admin/founder can post any video content for now ( from the admin dashboard), through this community can access the information just like they are used to in Discord but on the Zeus NFT platform itself, by just connecting their wallet.
+These 3 tabs act as an information hub for those 3 respective token holders, where an admin can post information just like they would in discord.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The next thing which a community wants is a platform to do AMA, chat with the community on live streams. Currently, discord cannot handle that level of bandwidth and we all have faced issues using discord for AMA's and stuff, and an NFT community founder cannot use Youtube/Twitch to do the AMA's as they would then not be exclusive to the community.
+So with the help of Livepeer (), We have built a feature in the open community protocol), the Zeus NFT holders can connect on AMA's on the main website and the live stream is only accessible to the holders.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For the MVP which we built during the hackathon a community founder can do AMA's and post information/video content using the protocol and all this is done on their main website without the involvement of any centralized tools.
 
-### `npm test`
+And in order to incentivize the community to watch the video content and live streams, we have the POAP mining feature in the protocol in which when a user watched 70% of the video content, a pop-up will come from which they can claim their POAP as an appreciation.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# ZeusDAO showcase
 
-### `npm run build`
+### How it's made
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. OpenSea API's for the indexing of NFT's
+2. Livepeer for doing the Live AMA's
+3. Polygon POS SDK for minting the POAP when a user have watched 70% of the video content
+4. IPFS to store all ZeusDAO NFT's
+5. Solidity for all Smart contracts
+6. React, Node.js for frontend & backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When a user connects the wallet on the platform, the Opensea API's check if the user have the ZeusNFT or not, if not they are shown (You don't have the NFT, Buy them on Opensea) and if the user hold then which access level do that have and depending on that, they are given access to those respective tabs (Gold, Silver, Bronze)
 
-### `npm run eject`
+All the Zeus NFT are ERC-721 standards NFT which can be bought and sold on open sea testnet
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Bronze holder can only access the Bronze Tab
+Silver Holder can access both Bronze and Silver Tabs
+Gold Holder can access all the 3 tabs
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If a user has the Zeus NFT, other than the respective tabs they can also access the Livepeer tab which is the place for doing community calls (AMA's), live streams from a founder perspective.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In the Private Tabs, for now, the admin can share some video content and in order to build that we have a separate admin dashboard panel that only the admin can access using the credentials, so they upload a video content and select to which access level they wanna show this (Bronze, Silver, Gold).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In order to mint the POAP when a user has watched 70% of the video content on the platform, we are using the polygon network (Due to low gas fees) and no one wants to spend high fees just to mint a poap.
 
-## Learn More
+# Important Links
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Website: https://zeus-dao.web.app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Eth global showcase: https://showcase.ethglobal.com/nfthack2022/zeusdao
 
-### Code Splitting
+### Token Metadata on Pinata: https://gateway.pinata.cloud/ipfs/QmeZ2KSLg6JtdX8NHEA3H5WhozT5EYDwpf7ujUuUB4i43U
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Google Slides: https://docs.google.com/presentation/d/1vXXj1SlGZ-dtkbHjvKPRfM-HFT0W4WSPQxos5jUl_Gc/edit?usp=sharing
 
-### Analyzing the Bundle Size
+## Contract Address on Rinkeby
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### ZeusNFT: 0x5d3a3430aEBa963DA7a83a330337B9efe777A1e0
 
-### Making a Progressive Web App
+### POAP: 0xA3ED43F1D33ebFA24ca77a3149F5B6CA9c811F34
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Opensea Collection
 
-### Advanced Configuration
+### ZeusNFT: https://testnets.opensea.io/collection/zeusnft-v2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### POAP: https://testnets.opensea.io/collection/poapnft
